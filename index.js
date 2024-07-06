@@ -3,8 +3,10 @@ const express = require("express");
 const path = require("path");
 const {Server} =require("socket.io");
 const { Socket } = require("dgram");
+const dotenv = require("dotenv");
 
 const app = express();
+dotenv.config();
 const server = http.createServer(app);
 const io = new Server(server);
 
@@ -24,7 +26,7 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
-const PORT = 9000;
+const PORT = process.env.PORT||9000;
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
